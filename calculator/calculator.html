@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--   <link rel="stylesheet" href="stil1.css"/>   -->
+
+
+    <style>
+        
+        table {
+         border: 1px solid black;
+         border-radius: 25px;
+        }
+
+        td.belirgin:hover{
+         background-color:black;
+         border-radius: 25px;
+        }
+
+        td.esittir:hover{
+         background-color:black;
+        }
+
+        .sonuc{
+         border-radius: 25px;
+         background-color:black;
+         color: white;
+         height: 52px;
+         width: 280px;
+         text-align: right;
+         padding-top: 30px;
+        }
+
+        .gecmisE{
+         background-color: wheat;
+         color: black;
+         height: 350px;
+         width: 280px;
+        }
+
+        .silGecmis{
+         text-align: center;
+         background-color:black;
+         color: wheat;
+         border-radius: 25px;
+         height: 30px;
+         width: 290px;
+        }
+
+        td.silGecmis:hover{
+         color:black;
+        }
+
+        input[type=text]{
+         box-sizing: border-box;
+         border: none;
+         width: 100%;
+         text-align: right;
+        }
+
+        button{
+         border-color: blue;
+        }
+
+       .rakam{
+         background-attachment: fixed;
+         background-color: white;
+         color: black;
+         border-radius: 25px;
+         height: 70px;
+         width: 70px;
+         text-align: center;
+        }
+
+       .isaret{
+         text-align: center;
+         background-color: white;
+         color: blue;
+         border-radius: 25px;
+         height: 70px;
+         width: 70px;
+        }
+        
+        .esittir{
+         text-align: center;
+         background-color:white;
+         border-radius: 25px;
+         height: 70px;
+         width: 210px;
+        }
+
+        .sifirla{
+         text-align: center;
+         background-color: red;
+         color: white;
+         border-radius: 25px;
+         height: 70px;
+         width: 70px;
+        }
+        
+        .sil{
+         text-align: center;
+         background-color: red;
+         color: white;
+         border-radius: 25px;
+         height: 70px;
+         width: 70px;
+        }
+
+    </style>
+
+    <title>Calculator</title>
+
+</head>
+
+<body>
+
+    <table>
+
+        <tr>
+            <th colspan="4">
+                <textarea type="text" id="sonuc" class="sonuc" value="0" >
+                </textarea>
+            </th>
+        </tr>
+
+        <tr>
+            <td class="belirgin">
+                <input type="button" value="+" id="arti" class="isaret" onclick="hesapla('+')"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="-" id="eksi" class="isaret" onclick="hesapla('-')"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="X" id="carpi" class="isaret" onclick="hesapla('X')"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="/" id="bolum" class="isaret" onclick="hesapla('/')"/>
+            </td>
+
+            <td rowspan="5">
+                <textarea type="text" id="gecmisE" class="gecmisE" onclick="hesapla()" style="text-align: left;">
+                </textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="belirgin">
+                <input type="button" value="7" id="yedi" class="rakam" onclick="ekranaYaz(7)"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="8" id="sekiz" class="rakam" onclick="ekranaYaz(8)"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="9" id="dokuz" class="rakam" onclick="ekranaYaz(9)"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="√" id="karekok" class="isaret" onclick="hesapla('√')"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="belirgin">
+                <input type="button" value="4" id="dort" class="rakam" onclick="ekranaYaz(4)"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="5" id="bes" class="rakam" onclick="ekranaYaz(5)"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="6" id="alti" class="rakam" onclick="ekranaYaz(6)"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="%" id="yuzde" class="isaret" onclick="hesapla('%')"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="belirgin">
+                <input type="button" value="1" id="bir" class="rakam" onclick="ekranaYaz(1)"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="2" id="iki" class="rakam" onclick="ekranaYaz(2)"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="3" id="uc" class="rakam" onclick="ekranaYaz(3)"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="1/x" id="birBolü" class="isaret" onclick="hesapla('1/x')"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="belirgin">
+                <input type="button" value="0" id="sifir" class="rakam" onclick="ekranaYaz(0)"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="." id="nokta" class="isaret" onclick="hesapla('.')"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="-/+" id="tersIsaret" class="isaret" onclick="hesapla('-/+')"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="AC" id="sifirla" class="sifirla" onclick="sifirla()"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="esittir" colspan="3">
+                <input type="button" value="=" id="esittir" class="esittir" onclick="hesapla('=')"/>
+            </td>
+            <td class="belirgin">
+                <input type="button" value="del" id="sil" class="sil" onclick="sil()"/>
+            </td>
+
+            <td colspan="4">
+                <input type="button" value="Geçmişi Temizle" id="silGecmis" class="silGecmis" onclick="gecmisEkraniniSil()"/>
+            </td>
+        </tr>
+
+    </table>
+    
+
+    <script>
+
+        var sayi1 = " ";
+        var sayi2 = " ";
+        var islem = " ";
+        var islem2 = " ";
+        var sonuc = " ";
+        var a;
+        var deger;
+        var deger2;
+        var deger3;
+        var gelen2;
+        var i=0;
+        var tut=0;
+        var tut2=0;
+
+        var ekran = document.getElementById("sonuc");
+        var gecmisEkrani = document.getElementById("gecmisE");
+
+        gecmisEkrani.value="Henüz Geçmiş Yok";
+
+        function ekranaYaz(gelen)
+        {
+            
+            if(ekran.value == 0 && 
+            ekran.value.substring(ekran.value.length - 1,ekran.value.length) != '.')
+            {
+                ekran.value=" ";
+            }
+
+            if(islem != '√' && islem != '1/')
+            {
+                ekran.value += gelen;
+            }
+            else 
+            {
+                hesapla(islem);
+                ekran.value = gelen;
+                islem = " ";
+                sayi1 = " ";
+                sayi2 = " ";
+                sonuc = " ";
+            }
+
+            if(sonuc != " " && gelen != " " && islem == " " && tut==0)
+            {
+                ekran.value = gelen;
+                tut=1;
+            }
+        }
+
+        function hesapla(gelen)
+        { 
+            i=0;
+            deger = ekran.value.substring(ekran.value.length - 1,ekran.value.length);
+            deger2 = ekran.value.substring(ekran.value.length - 2,ekran.value.length);
+
+            if(deger2 == null)
+            {
+                ekran.value=0;
+            }
+            
+            /*
+            if(gelen == '-' && gecmisEkrani.value == "Henüz Geçmiş Yok")
+            {
+                ekran.value += 0;
+            }
+            */
+
+            if(deger != '+' && deger != '-' && deger != 'X' && deger != '/' && deger != '.' && deger != '=')
+            {
+                /*
+                if(tut2 == 1)
+                {
+                    ekran.value = ekran.value.split('=')[1];
+                    tut2=0;
+                }
+                */
+                if(gelen == '-' && deger2 == " ")
+                {
+                    ekran.value += 0;
+                }
+
+                // işleme devam et
+                if(islem != " ")
+                {
+                    if(gelen != '.' && gelen != '-/+')
+                    {
+                        gelen2 = gelen;
+                        gelen = '=';
+                        i=1;
+                    }
+                }
+                
+                if(gelen == '+')
+                {
+                    sayi1 = ekran.value;
+                    ekran.value += '+';
+                    islem='+';
+                }
+
+                if(gelen == '-')
+                {
+                    sayi1 = ekran.value;
+                    ekran.value += '-';
+                    islem='-';
+                }
+
+                if(gelen == 'X')
+                { 
+                    sayi1 = ekran.value;
+                    ekran.value += 'X';
+                    islem='X';
+                }
+
+                if(gelen == '/')
+                {
+                    sayi1 = ekran.value;
+                    ekran.value += '/';
+                    islem='/';
+                }
+
+                if(gelen == '√')
+                {
+                    sayi1 = ekran.value;
+                    ekran.value = '√';
+                    ekran.value += sayi1;
+                    islem='√';
+                }
+
+                if(gelen == '%')
+                {
+                    sayi1 = ekran.value;
+                    ekran.value += '%';
+                    islem='%';
+                }
+
+                if(gelen == '1/x')
+                {
+                    sayi1 = ekran.value;
+                    ekran.value = '1/';
+                    ekran.value += sayi1;
+                    islem='1/';
+                }
+
+                if(gelen == '-/+')
+                {
+                    if(islem == '-')
+                    {
+                        sayi2 = ekran.value.split(islem)[1];
+                        ekran.value = sayi1;
+                        ekran.value += '+';
+                        ekran.value += sayi2;
+                        islem = '+';
+                    }
+                    else if(islem != " ")
+                    {
+                        sayi2 = ekran.value.split(islem)[1];
+                        ekran.value = sayi1;
+                        ekran.value += islem;
+                        ekran.value += -1 * sayi2;
+                    }
+                    else 
+                    {
+                        ekran.value = -1 * ekran.value;
+                    }
+                }
+
+                if(gelen == '.')
+                { 
+                    if(islem != '√')
+                    {
+                        if(islem == " ")
+                        {
+                            var i = ekran.value.substring(0,ekran.value.length);
+                            var j;
+                            
+                            for(j=0;j<i.length;j++)
+                            {
+                                if(i[j] == '.')
+                                {
+                                    islem2 = '.';
+                                }
+                            }  
+                            //sayi1 = ekran.value;
+
+                            if(islem2 == " ")
+                            {
+                                ekran.value += '.';
+                            } 
+                            //ekran.value += '.';
+                            islem2 = " ";
+                        }
+                        else
+                        {
+                            var k = ekran.value.split(islem)[1];
+                            var i = k.substring(0,k.length);
+                            var j;
+
+                            for(j=0;j<i.length;j++)
+                            {
+                                if(i[j] == '.')
+                                {
+                                    islem2 = '.';
+                                }
+                            }  
+                            
+                            if(islem2 == " ")
+                            {
+                                ekran.value += '.';
+                            } 
+                            islem2 = " ";
+                        }
+                    }
+                }
+
+                if(gelen == '=')
+                {
+                    sayi2 = ekran.value.split(islem)[1];
+                    
+                    if(islem != " ")
+                    {
+                        if(islem == '+')
+                        {
+                            ekran.value = parseFloat(sayi1) + parseFloat(sayi2);
+                            sonuc = ekran.value;
+                        }
+                        else if(islem == '-')
+                        {
+                            ekran.value = parseFloat(sayi1) - parseFloat(sayi2);
+                            sonuc = ekran.value;
+                        }
+                        else if(islem == 'X')
+                        {
+                            ekran.value = parseFloat(sayi1) * parseFloat(sayi2);
+                            sonuc = ekran.value;
+                        }
+                        else if(islem == '/')
+                        { 
+                            ekran.value = parseFloat(sayi1) / parseFloat(sayi2);
+                            sonuc = ekran.value;
+                        }
+                        else if(islem == '√')
+                        {
+                            ekran.value = Math.sqrt(parseFloat(sayi1));
+                            sonuc = ekran.value;
+                        }
+                        else if(islem == '%')
+                        {
+                            if(sayi2 != "")
+                            {
+                                ekran.value = parseFloat(sayi1) / 100 * parseFloat(sayi2);
+                                sonuc = ekran.value;
+                            }
+                            else
+                            {
+                                ekran.value = parseFloat(sayi1) / 100;
+                                sonuc = ekran.value;
+                            }
+                        }
+                        else if(islem == '1/')
+                        { 
+                            ekran.value = 1/ parseFloat(sayi1);
+                            sonuc = ekran.value;
+                        }
+
+                        if(gecmisEkrani.value == "Henüz Geçmiş Yok")
+                        {
+                            gecmisEkrani.value="";
+                        }
+                        
+                        
+                        if(islem == '√' || islem == '1/') 
+                        {
+                            a = islem + sayi1 + "=" + sonuc;
+                            gecmisEkrani.value +=  a + '\n';
+                        }
+
+                        else
+                        {
+                            a= sayi1 + islem + sayi2 + "=" + sonuc;
+                            gecmisEkrani.value += a + '\n';
+                        }
+                    }
+                    else
+                    {
+                        if(sayi2 != null)
+                        {
+                            sayi1 = ekran.value;
+                        
+                            ekran.value = parseFloat(sayi1);
+                            sonuc = ekran.value;
+
+                            if(gecmisEkrani.value == "Henüz Geçmiş Yok")
+                            {
+                                gecmisEkrani.value="";
+                            }
+                            
+                            ekran.value = sayi1 + "=" + '\n' + sonuc;
+                            a= sayi1 + "=" + '\n' + sonuc;
+                            gecmisEkrani.value += a + '\n';
+
+                            tut2=1;
+
+                            i=0;
+                        }
+                    }
+
+                    islem = " ";
+                    sayi2 = " ";
+                    sayi1 = " ";
+
+                    if(i == 1)
+                    {
+                        hesapla(gelen2);
+                    }
+
+                    tut=0;
+                }
+            }
+        }
+        
+        function sifirla()
+        {
+            ekran.value=0;
+            document.getElementById("sonuc").innerHTML=ekran;
+            sonuc = " ";
+            sayi1 = " ";
+            sayi2 = " ";
+            islem = " ";
+        }
+        
+        function sil()
+        {
+
+            //islem = " ";
+            ekran.value=ekran.value.substring(0,ekran.value.length - 1);
+
+            if(ekran.value == "" || ekran.value == 0)
+            {
+                sifirla();
+            }
+            tut=1;
+
+            if(islem == '√')
+            {
+                sayi1 = ekran.value.substring(1,ekran.value.length);
+                islem = '√';
+            }
+
+            else
+            {
+                if(deger != '+' && deger != '-' && deger != 'X' && deger != '/' && deger != '.' && deger != '√'
+                && deger != '%' && deger != '1/x' && deger != '-/+' && deger != '=')
+                {
+                    islem = " ";
+                }
+            }
+            
+            
+            
+
+            //ekran.value = 0;
+            /*
+            if(ekran.value == " ")
+            {
+                ekran.value=0;
+            }
+            */
+        }
+
+        function gecmisEkraniniSil()
+        {
+            gecmisEkrani.value="Henüz Geçmiş Yok";
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+
+table {
+    border: 1px solid black;
+    border-radius: 25px;
+  }
+
+td:hover{
+    background-color:black;
+    border-radius: 25px;
+  }
+
+.sonuc{
+    border-radius: 25px;
+    background-color:black;
+    color: white;
+    height: 80px;
+    width: 70px;
+}
+
+.gecmisE{
+    background-color: wheat;
+    color: black;
+    border-radius: 25px;
+    height: 80px;
+    width: 70px;
+}
+
+input[type=text]{
+    box-sizing: border-box;
+    border: none;
+    width: 100%;
+    text-align: right;
+    word-wrap:break-word;
+}
+
+button{
+    border-color: blue;
+}
+
+.rakam{
+    background-attachment: fixed;
+    background-color: white;
+    color: black;
+    border-radius: 25px;
+    height: 70px;
+    width: 70px;
+    text-align: center;
+}
+
+.isaret{
+    text-align: center;
+    background-color: white;
+    color: blue;
+    border-radius: 25px;
+    height: 70px;
+    width: 70px;
+}
+
+.esittir{
+    text-align: center;
+    background-color: white;
+    border-radius: 25px;
+    height: 210px;
+    width: 70px;
+}
+
+.sifirla{
+    text-align: center;
+    background-color: red;
+    color: white;
+    border-radius: 25px;
+    height: 70px;
+    width: 70px;
+}
+
+.sil{
+    text-align: center;
+    background-color: red;
+    color: white;
+    border-radius: 25px;
+    height: 70px;
+    width: 70px;
+}
